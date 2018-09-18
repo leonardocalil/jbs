@@ -1,0 +1,7 @@
+Diario de bordo
+
+- ajustar configurações do spring-boot para subir a aplicação apontando para a base
+
+- Terminar de implementar o DecisionActionService
+- Criar em base de dados a sequence utilizando o liquibase
+- Implementar o front-end buscando a classe DecisionActionService para pegar o ID

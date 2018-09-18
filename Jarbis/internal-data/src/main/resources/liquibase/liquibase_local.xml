@@ -1,0 +1,152 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+  <changeSet id="create_flow" author="leonardo.calil">
+    <createTable tableName="flow">
+      <column name="id" type="int">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="name" type="varchar(200)">
+        <constraints nullable="false" />
+      </column>
+      <column name="frequence" type="varchar(20)">
+        <constraints nullable="false" />
+      </column>
+      <column name="interval" type="double">
+        <constraints nullable="false" />
+      </column>			
+    </createTable>
+  </changeSet>
+  
+  <changeSet id="20180715" author="leonardo.calil">
+    
+    <createSequence 
+    	sequenceName="SEQ_ACTION" />
+    <createSequence 
+    	sequenceName="SEQ_WAIT" />
+        
+    <createSequence 
+    	sequenceName="SEQ_DECISION_ACTION" />
+    
+    <createTable tableName="GROUP_ACTION">
+      <column name="ROW_ID" type="bigint">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="NAME" type="varchar(200)">
+        <constraints nullable="false" />
+      </column>
+      <column name="DESCRIPTION" type="varchar(1000)" />
+      <column name="URL" type="varchar(500)" />
+    </createTable>
+    
+    <createTable tableName="ACTION">
+      <column name="ROW_ID" type="bigint">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="NAME" type="varchar(200)">
+        <constraints nullable="false" />
+      </column>
+      <column name="GROUP_ACTION_ID" type="bigint">
+        <constraints nullable="false" 
+                foreignKeyName="fk_action_group_action" 
+                references="group_action(row_id)"
+                deleteCascade="true" />
+      </column>
+      <column name="FIELD_TYPE" type="varchar(10)" />
+      <column name="FILED_NAME" type="varchar(200)" />
+      <column name="DO_ACTION" type="varchar(50)" />
+      <column name="TYPE_WRITE" type="varchar(50)" />
+      <column name="WAIT_PRE_ACTION" type="boolean" />
+      <column name="WAIT_POS_ACTION" type="boolean" />
+    </createTable>
+    
+    <createTable tableName="WAIT">
+      <column name="ROW_ID" type="bigint">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="NAME" type="varchar(200)">
+        <constraints nullable="false" />
+      </column>
+      <column name="ACTION_ID" type="bigint">
+        <constraints nullable="false" 
+                foreignKeyName="fk_wait_action" 
+                references="action(row_id)"
+                deleteCascade="true" />
+      </column>
+      <column name="FIELD_TYPE" type="varchar(10)" />
+      <column name="FILED_NAME" type="varchar(200)" />
+      <column name="TIMEOUT" type="int" />
+    </createTable>
+    
+    <createTable tableName="PARAMETER">
+      <column name="ROW_ID" type="bigint">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="NAME" type="varchar(200)">
+        <constraints nullable="false" />
+      </column>
+      <column name="ACTION_ID" type="bigint">
+        <constraints nullable="false" 
+                foreignKeyName="fk_parameter_action" 
+                references="action(row_id)"
+                deleteCascade="true" />
+      </column>
+      <column name="VALUE" type="bigint" />
+    </createTable>
+    
+    
+    <createTable tableName="DECISION_ACTION">
+      <column name="ROW_ID" type="bigint">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="NAME" type="varchar(200)">
+        <constraints nullable="false" />
+      </column>
+      <column name="GROUP_ACTION_ID" type="bigint">
+        <constraints nullable="false" 
+                foreignKeyName="fk_action_group_action" 
+                references="group_action(row_id)"
+                deleteCascade="true" />
+      </column>
+      <column name="SEQUENCE" type="int" />
+      <column name="DO_OPTION" type="varchar(20)" />
+      <column name="NEXT_GROUP_ID" type="bigint" />
+    </createTable>
+    
+    <createTable tableName="LOGICAL_OPERATION">
+      <column name="ROW_ID" type="bigint">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="NAME" type="varchar(200)">
+        <constraints nullable="false" />
+      </column>
+      <column name="DECISION_ACTION_ID" type="bigint">
+        <constraints nullable="false" 
+                foreignKeyName="fk_da_lo" 
+                references="decision_action(row_id)"
+                deleteCascade="true" />
+      </column>
+      <column name="LOGICAL_OPERATOR" type="varchar(10)" />      
+    </createTable>
+    <createTable tableName="RELATIONAL_OPERATION">
+      <column name="ROW_ID" type="bigint">
+        <constraints primaryKey="true" nullable="false" />
+      </column>
+      <column name="NAME" type="varchar(200)">
+        <constraints nullable="false" />
+      </column>
+      <column name="ACTION_ID" type="bigint">
+        <constraints nullable="false" 
+                foreignKeyName="fk_ro_action" 
+                references="action(row_id)"
+                deleteCascade="true" />
+      </column>
+      <column name="OPERATOR" type="varchar(20)" />
+      <column name="VALUE" type="varchar(500)" />      
+    </createTable>
+    	 
+  </changeSet>
+ 
+</databaseChangeLog>

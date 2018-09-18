@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>br.com.increaseit.jarbis.ear</groupId>
+	<artifactId>jarbis-ear</artifactId>
+	<version>0.0.1</version>
+	<packaging>ear</packaging>
+	<name>jarbis-ear</name>
+
+	<parent>
+		<groupId>br.com.increaseit</groupId>
+		<artifactId>Jarbis</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	
+	<dependencies>
+		<dependency>
+			<groupId>br.com.increaseit.common</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>br.com.increaseit.external.data</groupId>
+			<artifactId>external-data</artifactId>
+			<version>0.0.1</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>br.com.increaseit.internal.data</groupId>
+			<artifactId>internal-data</artifactId>
+			<version>0.0.1</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>br.com.increaseit.backend</groupId>
+			<artifactId>backend</artifactId>
+			<version>0.0.1</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>br.com.increaseit.frontend</groupId>
+			<artifactId>frontend</artifactId>
+			<version>0.0.1</version>
+			<type>war</type>
+		</dependency>
+		
+	</dependencies>
+
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
