@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.ObjectUtils;
 
 import br.com.increaseit.common.util.Constants;
 
@@ -102,9 +101,9 @@ public abstract class MyCloneable<T> implements Cloneable{
 				
 				return obj.getClass().newInstance();
 			}
-			if (obj instanceof Cloneable) {
-				return ObjectUtils.clone(obj);
-			}
+//			if (obj instanceof Cloneable) {
+//				return ObjectUtils.clone(obj);
+//			}
 			
 			Object newObject = obj.getClass().newInstance();
 			

@@ -5,8 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 
-@SpringBootApplication
-@ComponentScan(basePackages={"br.com.increaseit.common.*"})
+//@SpringBootApplication
+//@ComponentScan("br.com.increaseit.common.*")
 public class MainCommon {
 
     public static void main(String[] args) throws Exception {
